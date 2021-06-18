@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block body %}
+  <div class="container article-page">
+    <div class="table-responsive">
+      <h3>Extracted Data</h3>
+      <p>{{ url }}</p>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Title</td>
+            <td>{{ article.title }}</td>
+          </tr>
+          <tr>
+            <td>Date</td>
+            <td>{{ article.date }}</td>
+          </tr>
+          <tr>
+            <td>Author</td>
+            <td>{{ article.author }}</td>
+          </tr>
+          <tr>
+            <td>Related articles</td>
+            <td>
+            {% for title, link in article.related.items() %}
+              <li><a href="{{ link }}">{{ title }}</a></li>
+            {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <td>Count Words</td>
+            <td>
+            {% for word, count in article.words_dict.items() %}
+              <li>{{ word }}: {{ count }}</li>
+            {% endfor %}
+            </td>
+          </tr>
+          <tr>
+            <td>Image</td>
+            <td>
+              <img src="{{ article.top_image }}"/>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}
